@@ -9,14 +9,79 @@
 </head>
   <body>
     <div class="container">
-        <div class="row">
+        <div class="row rowChar">
             <div class="col-md-12">
+              <h1>Choose your character</h1>
+              <div class="row charselect">
+              <div id="0" class="col-md-2 border character lukeC" val="0">
+                  <h6>Luke Skywalker</h6>
+                  <img src="assets/images/luke.jpg" alt="Luke" class="img-fluid">
+                  <div id="lukehp">100</div>
+              </div>
 
+              <div id="2" class="col-md-2 border character palpaC" val="2">
+                  <h6>Palpatine</h6>
+                  <img src="assets/images/palpatine.png" alt="Palpatine" class="img-fluid">
+                  <div id="palpahp">100</div>
+              </div>
+
+              <div id="1" class="col-md-2 border character obiC" val="1">
+                  <h6>Obi Wan Kenobi</h6>
+                  <img src="assets/images/obi.png" alt="Obi Wan Kenobi" class="img-fluid">
+                  <div id="obihp">100</div>
+              </div>
+
+              <div id="3" class="col-md-2 border character maulC" val="3">
+                  <h6>Darth Maul</h6>
+                  <img src="assets/images/darthmaul.png" alt="Darth Maul" class="img-fluid">
+                  <div id="maulhp">100</div>
+              </div>
             </div>
+            <div class="row"> 
+                <div class="col-md-12"><h1 class="winloss"></h1></div>
+              </div>
+            </div>
+        </div>
+        <div class="row rowHeroDef">
+            <div class="col-md-6">
+                <h1>Your Hero:</h1>
+                <div class="row hero">
+
+                </div>
+            </div>
+          
+                <div class="col-md-6">
+                    <h1>Defender:</h1>
+                    <div class="row defender">
+    
+                    </div>
+                    <button id="attack" class="btn">Attack</button>
+                </div>
+            
+        </div>
+        <div class="row rowFoe">
+            <div class="col-md-6">
+                <h1>Your Foes:</h1>
+                <div class="row enemy">
+
+                </div>
+            </div>
+            <div class="col-md-6">
+                <h1>Defeated foes</h1>
+                <div class="row defeated">
+
+                </div>
+            </div>
+        </div>
+        
+        <div class="row">
+            
+            
         </div>
     </div>
 
-
+    
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="assets/script.js"></script>
   </body>
 </html>

@@ -1,0 +1,19 @@
+h1 {
+    text-align: center;
+}
+
+.character{
+    text-align: center;
+}
+
+.rowHeroDef, .rowFoe {
+    display: none;
+}
+
+.ready {
+    background-color: green;
+}
+
+.charselect, .hero, .defender, .enemy, .defeated {
+    margin: 0 auto;
+}
