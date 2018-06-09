@@ -6,14 +6,33 @@ h1 {
     text-align: center;
 }
 
-.rowHeroDef, .rowFoe {
-    display: none;
-}
-
 .ready {
     background-color: green;
 }
 
 .charselect, .hero, .defender, .enemy, .defeated {
     margin: 0 auto;
+}
+
+.log {
+    height: 150px;
+    max-height: 200px;
+    overflow: scroll;
+}
+
+.log #damage{
+    color: red;
+}
+
+.vanish {
+    display: none;
+}
+
+.defeated .character {
+    opacity: 0.75;
+    background-color: black;
+}
+
+.defeated .character img {
+    display: none;
 }

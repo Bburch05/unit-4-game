@@ -5,44 +5,49 @@ var heroDiv = $(".hero");
 var enemyDiv = $('.enemy');
 var defendDiv = $('.defender');
 var defeatDiv = $('.defeated');
+var logDiv = $('.log')
 
 //Char Objects
 var luke = {
+    name: "Luke Skywalker",
     atkBase : 10,
     atk : 10,
     hp : 100,
     hpBase : 100,
-    cAtk : 15,
+    cAtk : 10,
     hpdiv : $("#lukehp"),
     loc : $(".lukeC")
 }
 
 var obi = {
-    atkBase : 10,
-    atk : 10,
-    hp : 100,
-    hpBase : 100,
+    name: "Obi Wan Kenobi",
+    atkBase : 5,
+    atk : 5,
+    hp : 125,
+    hpBase : 125,
     cAtk : 15,
     hpdiv : $("#obihp"),
     loc : $(".obiC")
 }
 
 var darthmaul = {
-    atkBase : 10,
-    atk : 10,
+    name: "Darth Maul",
+    atkBase : 20,
+    atk : 20,
     hp : 100,
     hpBase : 100,
-    cAtk : 15,
+    cAtk : 20,
     hpdiv : $("#maulhp"),
     loc : $(".maulC")
 }
 
 var palpatine = {
-    atkBase : 10,
-    atk : 10,
-    hp : 100,
-    hpBase : 100,
-    cAtk : 15,
+    name: "Palpatine",
+    atkBase : 15,
+    atk : 15,
+    hp : 50,
+    hpBase : 50,
+    cAtk : 25,
     hpdiv : $("#palpahp"),
     loc : $(".palpaC")
 }
@@ -55,7 +60,8 @@ var foes = 0;
 var heroChoice;
 var enemy = null;
 
-//
+//Functions
+    //Reset Game
 function initialize(){
     heroChoice = null;
     enemy = null;
@@ -65,11 +71,14 @@ function initialize(){
         chars[i].hp = chars[i].hpBase;
         $(chars[i].hpdiv).text(chars[i].hp);
     }
-    $(".rowChar").css("display","flex")
-    $(".rowFoe, .rowHeroDef").css("display","none")
+    $(".rowChar").removeClass("vanish")
+    $(".rowFoe, .rowHeroDef, .rowDefeat").addClass("vanish")
     $("#attack").removeClass("ready")
     $(charDiv).removeClass("col-md-6")
 }
+
+// 
+initialize();
 
 //On Click Events
 $(charSel).on("click",charDiv,function(){
@@ -77,8 +86,8 @@ $(charSel).on("click",charDiv,function(){
     console.log(this);
     $(heroDiv).append(this);
     $(this).addClass("col-md-6")
-    $(".rowChar").css("display","none")
-    $(".rowFoe, .rowHeroDef").css("display","flex")
+    $(".rowChar").addClass("vanish")
+    $(".rowFoe, .rowHeroDef, .rowDefeat").removeClass("vanish")
     $(".character").each(function(){
         if ( chars[parseInt(this.id)] === heroChoice ) {
             return false;
@@ -102,11 +111,15 @@ $(enemyDiv).on("click",charDiv,function(){
 
 $("#attack").on("click", function(){
     enemy.hp = enemy.hp - heroChoice.atk;
+    $(logDiv).prepend(
+        "<p>" + heroChoice.name + " dealt <span id='damage'>" + heroChoice.atk + "</span> damage to " + enemy.name + "</p>"
+    );
     heroChoice.atk = heroChoice.atk + heroChoice.atkBase;
     $(enemy.hpdiv).text(enemy.hp);
     if (enemy.hp <= 0){
         $(defeatDiv).append(enemy.loc)
         $(enemy.loc).removeClass("col-md-6")
+        $(enemy.hpdiv).text("0")
         $("#attack").removeClass("ready")
         enemy = null;
         foes--
@@ -115,18 +128,27 @@ $("#attack").on("click", function(){
     else {
         heroChoice.hp = heroChoice.hp - enemy.cAtk;
         $(heroChoice.hpdiv).text(heroChoice.hp);
+        $(logDiv).prepend(
+            enemy.name + " dealt <span id='damage'>" + enemy.cAtk + "</span> damage to " + heroChoice.name
+        );
     }
 
     if (heroChoice.hp <= 0){
+        heroChoice.atk = heroChoice.atkBase;
         initialize();
         $(".winloss").text("You Lost!")
     }
 
     if (foes === 0) {
+        heroChoice.atk = heroChoice.atkBase;
         initialize();
         $(".winloss").text("You Won!")
     }
 
 
 
+})
+
+$("#clearLog").on("click", function(){
+    $(".log").empty()
 })
