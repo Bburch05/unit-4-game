@@ -1,7 +1,7 @@
 # Star  Wars RPG
 
 # Objective
-The objective of this game is to, using a single character, 
+The objective of this game is to, using a single character, defeat all foes.
 
 # Step 1
 Click on the character you wish to use.
