@@ -34,8 +34,8 @@ var darthmaul = {
     name: "Darth Maul",
     atkBase : 20,
     atk : 20,
-    hp : 100,
-    hpBase : 100,
+    hp : 80,
+    hpBase : 80,
     cAtk : 20,
     hpdiv : $("#maulhp"),
     loc : $(".maulC")
@@ -63,6 +63,7 @@ var enemy = null;
 //Functions
     //Reset Game
 function initialize(){
+    foes = 0;
     heroChoice = null;
     enemy = null;
     $(charSel).append($(charDiv));  
@@ -77,9 +78,11 @@ function initialize(){
     $(charDiv).removeClass("col-md-6")
 }
 
-// 
-initialize();
 
+
+
+initialize();
+$(document).ready(function(){
 //On Click Events
 $(charSel).on("click",charDiv,function(){
     heroChoice = chars[parseInt(this.id)];
@@ -152,3 +155,5 @@ $("#attack").on("click", function(){
 $("#clearLog").on("click", function(){
     $(".log").empty()
 })
+
+});
